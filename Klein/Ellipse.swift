@@ -2,7 +2,7 @@ import AppKit
 import Combine
 
 
-final class Elipse: FigureProtocol
+final class Ellipse: FigureProtocol
 {
    // MARK: - Initialisation
    private var rect: CGRect

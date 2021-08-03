@@ -19,9 +19,19 @@ final class Canvas: CanvasProtocol
    
    
    // MARK: -
+   func fromJSON(_ json: [String: Any]) -> FigureProtocol?
+   {
+      if json["type"] as? String == "rect" {
+         return Rect(bounds: masterLayer.bounds, rect: .init(x: json["x"] as! CGFloat, y: json["y"] as! CGFloat, width: json["width"] as! CGFloat, height: json["height"] as! CGFloat))
+      }
+      else {
+         return Ellipse(bounds: masterLayer.bounds, rect: .init(x: json["x"] as! CGFloat, y: json["y"] as! CGFloat, width: json["width"] as! CGFloat, height: json["height"] as! CGFloat))
+      }
+   }
+   
    func ellipse(in rect: CGRect) -> FigureProtocol
    {
-      Elipse(bounds: masterLayer.bounds, rect: rect)
+      Ellipse(bounds: masterLayer.bounds, rect: rect)
    }
    
    
@@ -66,9 +76,9 @@ final class Canvas: CanvasProtocol
       guard let figureLayer = figure.layer() as? CALayer else {return }
       
       figures.append(figure)
+      figureLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
+      figureLayer.frame = masterLayer.bounds
       masterLayer.addSublayer(figureLayer)
-      
-      // WIP: add z index managing, add figure to master layer
    }
    
    
@@ -147,7 +157,11 @@ final class Canvas: CanvasProtocol
    }
    
    
-   func jsonString() -> String {
-      ""
+   func jsonString() -> String
+   {
+      "[" +
+         figures.map({ $0.jsonString()}).joined(separator: ",")
+         +
+         "]"
    }
 }

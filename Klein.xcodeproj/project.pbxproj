@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		285E01A626B85F8300A93C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01A526B85F8300A93C9A /* AppDelegate.swift */; };
 		285E01A826B85F8300A93C9A /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01A726B85F8300A93C9A /* Document.swift */; };
-		285E01AB26B85F8300A93C9A /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 285E01A926B85F8300A93C9A /* Document.xib */; };
 		285E01AD26B85F8500A93C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 285E01AC26B85F8500A93C9A /* Assets.xcassets */; };
 		285E01B026B85F8500A93C9A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 285E01AE26B85F8500A93C9A /* MainMenu.xib */; };
 		285E01BA26B93EB800A93C9A /* Mac Developer - challenge .pdf in Resources */ = {isa = PBXBuildFile; fileRef = 285E01B926B93EB800A93C9A /* Mac Developer - challenge .pdf */; };
 		285E01BC26B9463000A93C9A /* FigureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01BB26B9463000A93C9A /* FigureProtocol.swift */; };
 		285E01BE26B946C000A93C9A /* CanvasProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01BD26B946C000A93C9A /* CanvasProtocol.swift */; };
 		285E01C126B9483700A93C9A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C026B9483700A93C9A /* Canvas.swift */; };
-		285E01C326B9485800A93C9A /* Elipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C226B9485800A93C9A /* Elipse.swift */; };
+		285E01C326B9485800A93C9A /* Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C226B9485800A93C9A /* Ellipse.swift */; };
 		285E01C526B9485C00A93C9A /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C426B9485C00A93C9A /* Rect.swift */; };
 		285E01C726B94A9600A93C9A /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C626B94A9600A93C9A /* CanvasView.swift */; };
 		285E01C926B94AA100A93C9A /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C826B94AA100A93C9A /* CanvasViewController.swift */; };
@@ -30,7 +29,6 @@
 		285E01A226B85F8300A93C9A /* Klein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klein.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		285E01A526B85F8300A93C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		285E01A726B85F8300A93C9A /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		285E01AA26B85F8300A93C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		285E01AC26B85F8500A93C9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		285E01AF26B85F8500A93C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		285E01B126B85F8500A93C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,7 +38,7 @@
 		285E01BB26B9463000A93C9A /* FigureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureProtocol.swift; sourceTree = "<group>"; };
 		285E01BD26B946C000A93C9A /* CanvasProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasProtocol.swift; sourceTree = "<group>"; };
 		285E01C026B9483700A93C9A /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		285E01C226B9485800A93C9A /* Elipse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elipse.swift; sourceTree = "<group>"; };
+		285E01C226B9485800A93C9A /* Ellipse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ellipse.swift; sourceTree = "<group>"; };
 		285E01C426B9485C00A93C9A /* Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
 		285E01C626B94A9600A93C9A /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		285E01C826B94AA100A93C9A /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				285E01C626B94A9600A93C9A /* CanvasView.swift */,
 				285E01C826B94AA100A93C9A /* CanvasViewController.swift */,
 				285E01BF26B9482900A93C9A /* Canvas */,
-				285E01A926B85F8300A93C9A /* Document.xib */,
 				285E01AC26B85F8500A93C9A /* Assets.xcassets */,
 				285E01AE26B85F8500A93C9A /* MainMenu.xib */,
 				285E01B926B93EB800A93C9A /* Mac Developer - challenge .pdf */,
@@ -105,7 +102,7 @@
 				285E01BB26B9463000A93C9A /* FigureProtocol.swift */,
 				285E01BD26B946C000A93C9A /* CanvasProtocol.swift */,
 				285E01C026B9483700A93C9A /* Canvas.swift */,
-				285E01C226B9485800A93C9A /* Elipse.swift */,
+				285E01C226B9485800A93C9A /* Ellipse.swift */,
 				285E01C426B9485C00A93C9A /* Rect.swift */,
 				285E01CE26B95A6E00A93C9A /* InspectorView.swift */,
 			);
@@ -171,7 +168,6 @@
 			files = (
 				285E01AD26B85F8500A93C9A /* Assets.xcassets in Resources */,
 				285E01BA26B93EB800A93C9A /* Mac Developer - challenge .pdf in Resources */,
-				285E01AB26B85F8300A93C9A /* Document.xib in Resources */,
 				285E01B026B85F8500A93C9A /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,21 +191,13 @@
 				285E01BC26B9463000A93C9A /* FigureProtocol.swift in Sources */,
 				285E01C126B9483700A93C9A /* Canvas.swift in Sources */,
 				285E01A626B85F8300A93C9A /* AppDelegate.swift in Sources */,
-				285E01C326B9485800A93C9A /* Elipse.swift in Sources */,
+				285E01C326B9485800A93C9A /* Ellipse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		285E01A926B85F8300A93C9A /* Document.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				285E01AA26B85F8300A93C9A /* Base */,
-			);
-			name = Document.xib;
-			sourceTree = "<group>";
-		};
 		285E01AE26B85F8500A93C9A /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

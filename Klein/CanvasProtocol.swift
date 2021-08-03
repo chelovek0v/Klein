@@ -8,13 +8,8 @@ protocol CanvasProtocol
    
    func addFigure(_ figure: FigureProtocol)
    
-   var selectedFigure: FigureProtocol? { get }
-   
    func click(at point: CGPoint)
-   func rightClick(at poin: CGPoint)
    func select(at point: CGPoint)
-   func selectFarthest(at point: CGPoint)
-   func selectPrecisely(at point: CGPoint)
    func deselect()
    
    func translate(_ translation: CGPoint)
@@ -22,6 +17,7 @@ protocol CanvasProtocol
    func layer() -> Any
    func insepctorView() -> Any
    
+   func fromJSON(_ string: [String: Any]) -> FigureProtocol?
    
    func jsonString() -> String
    
