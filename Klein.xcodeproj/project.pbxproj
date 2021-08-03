@@ -18,6 +18,8 @@
 		285E01C126B9483700A93C9A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C026B9483700A93C9A /* Canvas.swift */; };
 		285E01C326B9485800A93C9A /* Elipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C226B9485800A93C9A /* Elipse.swift */; };
 		285E01C526B9485C00A93C9A /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C426B9485C00A93C9A /* Rect.swift */; };
+		285E01C726B94A9600A93C9A /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C626B94A9600A93C9A /* CanvasView.swift */; };
+		285E01C926B94AA100A93C9A /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C826B94AA100A93C9A /* CanvasViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		285E01C026B9483700A93C9A /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		285E01C226B9485800A93C9A /* Elipse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elipse.swift; sourceTree = "<group>"; };
 		285E01C426B9485C00A93C9A /* Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
+		285E01C626B94A9600A93C9A /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		285E01C826B94AA100A93C9A /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 			children = (
 				285E01A526B85F8300A93C9A /* AppDelegate.swift */,
 				285E01A726B85F8300A93C9A /* Document.swift */,
+				285E01C626B94A9600A93C9A /* CanvasView.swift */,
+				285E01C826B94AA100A93C9A /* CanvasViewController.swift */,
 				285E01BF26B9482900A93C9A /* Canvas */,
 				285E01A926B85F8300A93C9A /* Document.xib */,
 				285E01AC26B85F8500A93C9A /* Assets.xcassets */,
@@ -167,7 +173,9 @@
 			files = (
 				285E01C526B9485C00A93C9A /* Rect.swift in Sources */,
 				285E01A826B85F8300A93C9A /* Document.swift in Sources */,
+				285E01C726B94A9600A93C9A /* CanvasView.swift in Sources */,
 				285E01BE26B946C000A93C9A /* CanvasProtocol.swift in Sources */,
+				285E01C926B94AA100A93C9A /* CanvasViewController.swift in Sources */,
 				285E01BC26B9463000A93C9A /* FigureProtocol.swift in Sources */,
 				285E01C126B9483700A93C9A /* Canvas.swift in Sources */,
 				285E01A626B85F8300A93C9A /* AppDelegate.swift in Sources */,
