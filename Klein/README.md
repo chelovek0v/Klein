@@ -6,6 +6,8 @@
 * inspector/panel
 * encode itself in JSON
 * Values: width, height, colour, position(NSPoint)
+* Deselect
+* Contains point
 
 How to drag CALayers?
 * CanvasView can handle draggin and notify **selected figure**
@@ -23,15 +25,19 @@ Incorporates figures
 * Select — CALayer hittesting -> select
 * Manages parent layer
 * Save/restore document
+* Deselect
+* Select precisely
+* select farthest
 * Values: figures, **selected figure**
 
 
 * CanvasView — native counterpart of Canvas
    * Manages clicks and actions
+   * Alt click
+   * Drag
 
 
 # Use-Cases
-
 * Deselect
 * Select precisely
 * Figure changeColor
@@ -61,3 +67,21 @@ Incorporates figures
    1. Values should immediatly affect the selected figure
    
    Setting values much larger than actual canvas?
+   
+
+# Impelemntation Details
+
+* Each figure is allocated with it's own calayer
+* Canvas should add each CALayer into its own master layer
+
+Z index for CALayer?:
+* indexed array
+* incremenet z index for each figure, contains the max z index
+
+How to populate Precise Select Menu?
+* contains point
+
+hitTest gives the farthest view and not the nearest?
+* use alt to get the the farthest figure
+* I can use used for populating select precisely, hitT
+
