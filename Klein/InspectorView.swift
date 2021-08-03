@@ -30,7 +30,7 @@ final class InspectorView: NSView
       guard let figure = figure else { return }
        
       let stackView =
-      NSStackView(views: [xField, yField, widthField, heightField])
+      NSStackView(views: [xField, yField, widthField, heightField, colorWell])
       stackView.orientation = .vertical
       
       stackView.prepareForAutolayout()
@@ -63,6 +63,14 @@ final class InspectorView: NSView
       NSTextField(string: "20")
    }()
    
+   lazy var colorWell: NSColorWell = {
+      let well =
+         NSColorWell(frame: .init(origin: .zero, size: .init(width: 30, height: 30)))
+      well.prepareForAutolayout()
+      well.size(to: .init(width: 30, height: 30))
+      return well
+   }()
+   
    // MARK: - Combine
    func bindSizePublisher(_ publisher: AnyPublisher<CGSize, Never>)
    {
@@ -82,6 +90,12 @@ final class InspectorView: NSView
          .store(in: &subscribers)
       publisher.map(\.y).map({"\($0)"})
          .assign(to: \.stringValue, on: yField)
+         .store(in: &subscribers)
+   }
+   
+   func bindColourPublisher(_ publisher: AnyPublisher<NSColor, Never>)
+   {
+      publisher.assign(to: \.color, on: colorWell)
          .store(in: &subscribers)
    }
 }

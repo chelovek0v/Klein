@@ -6,9 +6,11 @@ final class Elipse: FigureProtocol
 {
    // MARK: - Initialisation
    private var rect: CGRect
+   private let bounds: CGRect
    
-   init(rect: CGRect)
+   init(bounds: CGRect, rect: CGRect)
    {
+      self.bounds = bounds
       self.rect = rect
    }
    
@@ -16,9 +18,9 @@ final class Elipse: FigureProtocol
    private lazy var shapeLayer: CAShapeLayer = {
       let layer =
          CAShapeLayer()
-      layer.frame = rect
+      layer.frame = bounds
       
-      layer.path = CGPath(ellipseIn: rect.withOrigin(.zero), transform: nil)
+      layer.path = CGPath(ellipseIn: rect, transform: nil)
       layer.fillColor = NSColor.blue.cgColor
       layer.strokeColor = .white
       layer.lineWidth = 0
@@ -44,7 +46,8 @@ final class Elipse: FigureProtocol
          .applying(
             .init(translationX: translation.x
             , y: translation.y))
-      shapeLayer.frame = rect
+
+      shapeLayer.path = CGPath(ellipseIn: self.rect, transform: nil)
       originSubject.send(rect.origin)
    }
    
@@ -58,6 +61,10 @@ final class Elipse: FigureProtocol
       
       view.bindSizePublisher(sizeSubject.eraseToAnyPublisher())
       view.bindOriginPublisher(originSubject.eraseToAnyPublisher())
+      view.bindColourPublisher(colorSubject.eraseToAnyPublisher())
+      
+       view.colorWell.target = self
+      view.colorWell.action = #selector(handleChangeColour(_:))
       
       
       NotificationCenter.default.publisher(
@@ -70,8 +77,7 @@ final class Elipse: FigureProtocol
             guard let self = self else { return }
             
             self.rect = self.rect.withWidth(CGFloat(width))
-            self.shapeLayer.frame = self.rect
-            self.shapeLayer.path = CGPath(ellipseIn: self.rect.withOrigin(.zero), transform: nil)
+            self.shapeLayer.path = CGPath(ellipseIn: self.rect, transform: nil)
          }
          .store(in: &subscribers)
          
@@ -85,8 +91,7 @@ final class Elipse: FigureProtocol
             guard let self = self else { return }
             
             self.rect = self.rect.withHeight(CGFloat(height))
-            self.shapeLayer.frame = self.rect
-            self.shapeLayer.path = CGPath(ellipseIn: self.rect.withOrigin(.zero), transform: nil)
+            self.shapeLayer.path = CGPath(ellipseIn: self.rect, transform: nil)
          }
          .store(in: &subscribers)
          
@@ -101,7 +106,7 @@ final class Elipse: FigureProtocol
             guard let self = self else { return }
             
             self.rect = self.rect.withOrigin(self.rect.origin.withX(CGFloat(x)))
-            self.shapeLayer.frame = self.rect
+            self.shapeLayer.path = CGPath(ellipseIn: self.rect, transform: nil)
          }
          .store(in: &subscribers)
          
@@ -115,12 +120,18 @@ final class Elipse: FigureProtocol
             guard let self = self else { return }
             
             self.rect = self.rect.withOrigin(self.rect.origin.withY(CGFloat(y)))
-            self.shapeLayer.frame = self.rect
+            self.shapeLayer.path = CGPath(ellipseIn: self.rect, transform: nil)
          }
          .store(in: &subscribers)
          
       
       return view
+   }
+   
+   
+    @objc private func handleChangeColour(_ colorWell: NSColorWell)
+   {
+      shapeLayer.fillColor = colorWell.color.cgColor
    }
    
    func changeSize(_ size: CGSize)
@@ -153,6 +164,9 @@ final class Elipse: FigureProtocol
    lazy var subscribers: [AnyCancellable] = []
    private lazy var numberFormatter =
       NumberFormatter()
+      
+      private lazy var colorSubject =
+      CurrentValueSubject<NSColor, Never>(.blue)
    private lazy var sizeSubject =
       CurrentValueSubject<CGSize, Never>(rect.size)
    private lazy var originSubject =

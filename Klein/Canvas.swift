@@ -7,7 +7,6 @@ final class Canvas: CanvasProtocol
       let layer =
       CALayer()
       
-//      layer.isGeometryFlipped = true
     layer.isOpaque = true
     layer.backgroundColor = NSColor.purple.cgColor
       
@@ -22,13 +21,13 @@ final class Canvas: CanvasProtocol
    // MARK: -
    func ellipse(in rect: CGRect) -> FigureProtocol
    {
-      Elipse(rect: rect)
+      Elipse(bounds: masterLayer.bounds, rect: rect)
    }
    
    
    func rect(_ rect: CGRect) -> FigureProtocol
    {
-      Rect(rect: rect)
+      Rect(bounds: masterLayer.bounds, rect: rect)
    }
    
    func randomFigure() -> FigureProtocol
@@ -122,6 +121,7 @@ final class Canvas: CanvasProtocol
    
    func deselect()
    {
+      inspectorWrapperView.subviews.forEach({ $0.removeFromSuperview() })
       figures.forEach({ $0.deselect() })
       selectedFigure = nil
    }
