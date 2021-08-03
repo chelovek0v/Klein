@@ -1,6 +1,7 @@
 import AppKit
 
-//@dynamicMemberLookup
+
+
 protocol FigureProtocol
 {
    func select()
@@ -15,6 +16,4 @@ protocol FigureProtocol
    func changeSize(_ size: CGSize)
    
    func jsonString() -> String
-   
-//   subscript(dynamicMember member: String) -> Any? { get }
 }

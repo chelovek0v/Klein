@@ -2,24 +2,28 @@ import Cocoa
 
 class Document: NSDocument
 {
+   // MARK: - Initialisaion
    let canvas: CanvasProtocol
-   override init() {
+   
+   override init()
+   {
       self.canvas = Canvas()
    }
    
-   override class var autosavesInPlace: Bool {
-      return true
-   }
    
-    
+   
+   // MARK: -
+   override class var autosavesInPlace: Bool { return true }
+   
+   
    private lazy var windowController =
       NSWindowController(window: canvasWindow)
    
-    private lazy var canvasViewController = {
-   CanvasViewController(canvas:canvas)
+   private lazy var canvasViewController = {
+      CanvasViewController(canvas:canvas)
    }()
    
-    private lazy var canvasWindow: NSWindow = {
+   private lazy var canvasWindow: NSWindow = {
       let window =
          NSWindow()
       
@@ -34,8 +38,8 @@ class Document: NSDocument
    override func makeWindowControllers() {
       addWindowController(windowController)
    }
-
-
+   
+   
    override func data(ofType typeName: String) throws -> Data {
       // Insert code here to write your document to data of the specified type, throwing an error in case of failure.
       // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
@@ -51,12 +55,12 @@ class Document: NSDocument
             , options: []) as! [[String: Any]]
       
       json.forEach { figureJson in
-         if let figure = canvas.fromJSON(figureJson) {
+         if let figure = canvas.figureFromJSON(figureJson) {
             canvas.addFigure(figure)
          }
       }
    }
-
-
+   
+   
 }
 

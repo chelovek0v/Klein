@@ -1,11 +1,12 @@
 import AppKit
 import Combine
 
+
 final class Rect: FigureProtocol
 {
    // MARK: - Initialisation
-   private var bounds: CGRect
-   private var rect: CGRect
+   private var rect: CGRect // this can be omited
+   private let bounds: CGRect
    
    init(bounds: CGRect, rect: CGRect)
    {
@@ -28,14 +29,11 @@ final class Rect: FigureProtocol
    }()
    
    
-   // MARK: -
-   func select() {
-      shapeLayer.lineWidth = 4
-   }
    
-   func deselect() {
-      shapeLayer.lineWidth = 0
-   }
+   // MARK:  -
+   func select() { shapeLayer.lineWidth = 4 }
+   
+   func deselect() { shapeLayer.lineWidth = 0 }
    
    
    func translate(_ translation: CGPoint)
@@ -44,20 +42,19 @@ final class Rect: FigureProtocol
          .applying(
             .init(translationX: translation.x
             , y: translation.y))
-
       shapeLayer.path = CGPath(rect: self.rect, transform: nil)
+      
       originSubject.send(rect.origin)
    }
    
-   func layer() -> Any {
-      shapeLayer
-   }
    
-   func inspector() -> Any
-   {
+   func layer() -> Any { shapeLayer }
+   
+   
+   func inspector() -> Any {
       let view =
-         InspectorView(figure: self)
-         
+      InspectorView(figure: self)
+      
       view.bindSizePublisher(sizeSubject.eraseToAnyPublisher())
       view.bindOriginPublisher(originSubject.eraseToAnyPublisher())
       view.bindColourPublisher(colorSubject.eraseToAnyPublisher())
@@ -65,6 +62,7 @@ final class Rect: FigureProtocol
       view.colorWell.target = self
       view.colorWell.action = #selector(handleChangeColour(_:))
       
+      // WIP: i feel sorry for two way binding :D
       NotificationCenter.default.publisher(
          for: NSControl.textDidChangeNotification
          , object: view.widthField)
@@ -74,7 +72,7 @@ final class Rect: FigureProtocol
          .sink {  [weak self] width in
             guard let self = self else { return }
             
-            self.rect = self.rect.withWidth(CGFloat(width))
+            self.rect            = self.rect.withWidth(CGFloat(width))
             self.shapeLayer.path = CGPath(rect: self.rect, transform: nil)
          }
          .store(in: &subscribers)
@@ -88,7 +86,7 @@ final class Rect: FigureProtocol
          .sink {  [weak self] height in
             guard let self = self else { return }
             
-            self.rect = self.rect.withHeight(CGFloat(height))
+            self.rect            = self.rect.withHeight(CGFloat(height))
             self.shapeLayer.path = CGPath(rect: self.rect, transform: nil)
          }
          .store(in: &subscribers)
@@ -103,7 +101,7 @@ final class Rect: FigureProtocol
          .sink {  [weak self] x in
             guard let self = self else { return }
             
-            self.rect = self.rect.withOrigin(self.rect.origin.withX(CGFloat(x)))
+            self.rect            = self.rect.withOrigin(self.rect.origin.withX(CGFloat(x)))
             self.shapeLayer.path = CGPath(rect: self.rect, transform: nil)
          }
          .store(in: &subscribers)
@@ -117,47 +115,43 @@ final class Rect: FigureProtocol
          .sink {  [weak self] y in
             guard let self = self else { return }
             
-            self.rect = self.rect.withOrigin(self.rect.origin.withY(CGFloat(y)))
+            self.rect            = self.rect.withOrigin(self.rect.origin.withY(CGFloat(y)))
             self.shapeLayer.path = CGPath(rect: self.rect, transform: nil)
          }
          .store(in: &subscribers)
          
-         
       
       return view
    }
-   lazy var subscribers: [AnyCancellable] = []
    
-   @objc private func handleChangeColour(_ colorWell: NSColorWell)
-   {
-      shapeLayer.fillColor = colorWell.color.cgColor
-   }
    
-   func containsPoint(_ point: CGPoint) -> Bool {
-
-      rect.contains(point)
-   }
-
-    func changeSize(_ size: CGSize)
+   func changeSize(_ size: CGSize)
    {
-      rect = rect.withSize(size)
+      rect             = rect.withSize(size)
       shapeLayer.frame = rect
-      shapeLayer.path = CGPath(ellipseIn: rect.withOrigin(.zero), transform: nil)
+      shapeLayer.path  = CGPath(rect: rect.withOrigin(.zero), transform: nil)
       
       sizeSubject.send(size)
    }
    
-   func changeOrigin(_ point: CGPoint) {
-       rect =
-         rect.withOrigin(point)
-      shapeLayer.frame =
-         rect
+   
+   func changeOrigin(_ point: CGPoint)
+   {
+      rect             = rect.withOrigin(point)
+      shapeLayer.frame = rect
          
       originSubject.send(point)
    }
    
+   
+   func containsPoint(_ point: CGPoint) -> Bool
+   {
+      rect.contains(point)
+   }
+   
+   
    func jsonString() -> String {
-      """
+        """
       {
          "width": \(rect.width),
          "height": \(rect.height),
@@ -168,14 +162,22 @@ final class Rect: FigureProtocol
       """
    }
    
-    private lazy var colorSubject =
+   
+   @objc private func handleChangeColour(_ colorWell: NSColorWell)
+   {
+      shapeLayer.fillColor = colorWell.color.cgColor
+   }
+   
+
+   // MARK: - Combine
+   lazy var subscribers: [AnyCancellable] = []
+   private lazy var numberFormatter =
+      NumberFormatter()
+      
+   private lazy var colorSubject =
       CurrentValueSubject<NSColor, Never>(.red)
    private lazy var sizeSubject =
       CurrentValueSubject<CGSize, Never>(rect.size)
    private lazy var originSubject =
       CurrentValueSubject<CGPoint, Never>(rect.origin)
-      
-      
-      private lazy var numberFormatter =
-   NumberFormatter()
 }
