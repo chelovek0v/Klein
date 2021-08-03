@@ -18,7 +18,6 @@ protocol CanvasProtocol
    func layer() -> Any
    
    
-   func containsPoint(_ point: CGPoint) -> Bool
    
    func jsonString() -> String
    
