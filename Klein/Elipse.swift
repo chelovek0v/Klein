@@ -20,6 +20,8 @@ final class Elipse: FigureProtocol
       
       layer.path = CGPath(ellipseIn: rect.withOrigin(.zero), transform: nil)
       layer.fillColor = NSColor.blue.cgColor
+      layer.strokeColor = .white
+      layer.lineWidth = 0
       
       return layer
    }()
@@ -28,11 +30,11 @@ final class Elipse: FigureProtocol
    
    // MARK:  -
    func select() {
-      
+      shapeLayer.lineWidth = 4
    }
    
    func deselect() {
-      
+      shapeLayer.lineWidth = 0
    }
    
    func layer() -> Any {
@@ -44,7 +46,7 @@ final class Elipse: FigureProtocol
    }
    
    func containsPoint(_ point: CGPoint) -> Bool {
-      shapeLayer.contains(point)
+      rect.contains(point)
    }
    
    func jsonString() -> String {

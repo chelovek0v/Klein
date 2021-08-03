@@ -19,6 +19,8 @@ final class Rect: FigureProtocol
       
       layer.path = CGPath(rect: rect.withOrigin(.zero), transform: nil)
       layer.fillColor = NSColor.red.cgColor
+      layer.strokeColor = .white
+      layer.lineWidth = 0
       
       return layer
    }()
@@ -26,11 +28,11 @@ final class Rect: FigureProtocol
    
    // MARK: -
    func select() {
-      
+      shapeLayer.lineWidth = 4
    }
    
    func deselect() {
-      
+      shapeLayer.lineWidth = 0
    }
    
    func layer() -> Any {
@@ -42,7 +44,8 @@ final class Rect: FigureProtocol
    }
    
    func containsPoint(_ point: CGPoint) -> Bool {
-      shapeLayer.contains(point)
+//      shapeLayer.contains(point)
+      rect.contains(point)
    }
    
    func jsonString() -> String {

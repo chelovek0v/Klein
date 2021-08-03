@@ -74,10 +74,18 @@ final class Canvas: CanvasProtocol
    
    func click(at point: CGPoint)
    {
-      let figure =
-         randomFigure()
+      deselect()
+      
+      if let selectedFigure = figures.first(where: { $0.containsPoint(point)}) {
+         selectedFigure.select()
+         self.selectedFigure = selectedFigure
+      }
+      else {
+         let figure =
+            randomFigure()
          
-      addFigure(figure)
+         addFigure(figure)
+      }
    }
    
    func rightClick(at poin: CGPoint) {
@@ -99,6 +107,7 @@ final class Canvas: CanvasProtocol
    
    func deselect() {
       // WIP: deselect all figures and nil selectedFigure
+      figures.forEach({ $0.deselect() })
    }
    
    func layer() -> Any {
