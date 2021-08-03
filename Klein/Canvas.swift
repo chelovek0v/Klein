@@ -3,7 +3,17 @@ import AppKit
 final class Canvas: CanvasProtocol
 {
    // MARK: - Intialisation
-   private lazy var masterLayer = CALayer()
+   private lazy var masterLayer: CALayer = {
+      let layer =
+      CALayer()
+      
+//      layer.isGeometryFlipped = true
+    layer.isOpaque = true
+    layer.backgroundColor = NSColor.purple.cgColor
+      
+      return layer
+   }()
+   
    private lazy var figures: [FigureProtocol] = []
    
    var selectedFigure: FigureProtocol?
@@ -12,13 +22,13 @@ final class Canvas: CanvasProtocol
    // MARK: -
    func ellipse(in rect: CGRect) -> FigureProtocol
    {
-      Elipse()
+      Elipse(rect: rect)
    }
    
    
    func rect(_ rect: CGRect) -> FigureProtocol
    {
-      Rect()
+      Rect(rect: rect)
    }
    
    func randomFigure() -> FigureProtocol
@@ -32,15 +42,47 @@ final class Canvas: CanvasProtocol
    
    func randomRect(inside bounds: CGRect) -> CGRect
    {
-      CGRect(origin: .zero, size: .zero)
+   // WIP: add extension to rect or size
+      let randomPoint: CGPoint = {
+         let inset =
+            masterLayer.bounds.insetBy(dx: 100, dy: 100)
+         let x =
+            CGFloat.random(in: inset.minX...inset.maxX)
+         let y =
+            CGFloat.random(in: inset.minY...inset.maxY)
+            let point =
+            CGPoint(x: x, y: y)
+            print(point)
+            
+         return point
+      }()
+      
+      return CGRect(origin: randomPoint, size: .init(width: 100, height: 100))
    }
    
-   func addFigure(_ figure: FigureProtocol) {
+   
+   func addFigure(_ figure: FigureProtocol)
+   {
+      guard let figureLayer = figure.layer() as? CALayer else {return }
+      
       figures.append(figure)
+      masterLayer.addSublayer(figureLayer)
+      
       // WIP: add z index managing, add figure to master layer
    }
    
    
+   func click(at point: CGPoint)
+   {
+      let figure =
+         randomFigure()
+         
+      addFigure(figure)
+   }
+   
+   func rightClick(at poin: CGPoint) {
+      
+   }
    
    func select(at point: CGPoint) {
       // WIP: find the nearest figure, select it, udpate selectedFigure

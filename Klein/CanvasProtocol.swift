@@ -10,6 +10,8 @@ protocol CanvasProtocol
    
    var selectedFigure: FigureProtocol? { get }
    
+   func click(at point: CGPoint)
+   func rightClick(at poin: CGPoint)
    func select(at point: CGPoint)
    func selectFarthest(at point: CGPoint)
    func selectPrecisely(at point: CGPoint)

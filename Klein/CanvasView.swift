@@ -45,11 +45,13 @@ final class CanvasView: NSView
    // MARK: Mouse Down -> Mouse Up
    override func mouseDown(with event: NSEvent)
    {
+      // WIP:  check layer and view coordinates
       let point =
          convert(event.locationInWindow, from: nil)
       
       // WIP: check for alt click
-      canvas.select(at: point)
+//      canvas.select(at: point)
+      canvas.click(at: point)
    }
    
 

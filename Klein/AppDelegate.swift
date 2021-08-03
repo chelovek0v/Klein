@@ -17,10 +17,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate
       window.backgroundColor = .white
       window.contentViewController = canvasViewController
       
-      
-      
       window.setFrame(.init(origin: .init(x: 200, y: 200), size: .init(width: 800, height: 600)), display: true)
-      
       
       return window
    }()
