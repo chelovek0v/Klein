@@ -45,7 +45,7 @@ final class Canvas: CanvasProtocol
    // WIP: add extension to rect or size
       let randomPoint: CGPoint = {
          let inset =
-            masterLayer.bounds.insetBy(dx: 100, dy: 100)
+            masterLayer.bounds.insetBy(dx: 150, dy: 150)
          let x =
             CGFloat.random(in: inset.minX...inset.maxX)
          let y =
@@ -53,7 +53,7 @@ final class Canvas: CanvasProtocol
             let point =
             CGPoint(x: x, y: y)
             
-//            print(point)
+            print(point)
             
          return point
       }()
@@ -80,6 +80,12 @@ final class Canvas: CanvasProtocol
       if let selectedFigure = figures.last(where: { $0.containsPoint(point)}) {
          selectedFigure.select()
          self.selectedFigure = selectedFigure
+         
+         if let insepctor = selectedFigure.inspector() as? NSView {
+            inspectorWrapperView.subviews.forEach({ $0.removeFromSuperview() })
+            inspectorWrapperView.addSubview(insepctor)
+            insepctor.pin(inspectorWrapperView)
+         }
       }
       else {
          let figure =
@@ -120,8 +126,24 @@ final class Canvas: CanvasProtocol
       selectedFigure = nil
    }
    
+   // MARK: -
    func layer() -> Any {
       masterLayer
+   }
+   
+   
+    private lazy var inspectorWrapperView: NSView = {
+      let wrapper =
+         NSView()
+      wrapper.prepareForAutolayout()
+      wrapper.wantsLayer = true
+      wrapper.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+      return wrapper
+   }()
+   
+   func insepctorView() -> Any
+   {
+      inspectorWrapperView
    }
    
    

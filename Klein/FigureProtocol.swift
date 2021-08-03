@@ -1,5 +1,6 @@
 import AppKit
 
+//@dynamicMemberLookup
 protocol FigureProtocol
 {
    func select()
@@ -9,10 +10,11 @@ protocol FigureProtocol
    func inspector() -> Any
    
    func containsPoint(_ point: CGPoint) -> Bool
-   
    func translate(_ translation: CGPoint)
+   func changeOrigin(_ point: CGPoint)
+   func changeSize(_ size: CGSize)
    
    func jsonString() -> String
    
-   //func draw(in context: Contex)
+//   subscript(dynamicMember member: String) -> Any? { get }
 }

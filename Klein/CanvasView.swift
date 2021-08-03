@@ -23,12 +23,18 @@ final class CanvasView: NSView
    
    // MARK: - Setup
    lazy var setup: Void = {
+      guard let inspectorView = canvas.insepctorView() as? NSView else { return }
+      addSubview(inspectorView)
+      inspectorView.pinTopToTop(self)
+      inspectorView.pinTrailing(self)
+      inspectorView.sizeWidth(with: 200)
+      inspectorView.pinBottomToBottom(self)
+      
       guard let canvasLayer = canvas.layer() as? CALayer else { return }
       
       layer?.addSublayer(canvasLayer)
-      canvasLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
-      canvasLayer.frame = bounds
-      
+      canvasLayer.autoresizingMask = []
+      canvasLayer.frame = CGRect(origin: .zero, size: .init(width: 600, height: 600))
       
       let panRecogniser =
       NSPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))

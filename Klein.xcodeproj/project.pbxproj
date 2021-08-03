@@ -22,6 +22,8 @@
 		285E01C926B94AA100A93C9A /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01C826B94AA100A93C9A /* CanvasViewController.swift */; };
 		285E01CC26B951C300A93C9A /* NSPoint+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01CA26B951C300A93C9A /* NSPoint+Additions.swift */; };
 		285E01CD26B951C300A93C9A /* NSRect+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01CB26B951C300A93C9A /* NSRect+Additions.swift */; };
+		285E01CF26B95A6E00A93C9A /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01CE26B95A6E00A93C9A /* InspectorView.swift */; };
+		285E01D126B95BD700A93C9A /* NSView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01D026B95BD700A93C9A /* NSView+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		285E01C826B94AA100A93C9A /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		285E01CA26B951C300A93C9A /* NSPoint+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Additions.swift"; sourceTree = "<group>"; };
 		285E01CB26B951C300A93C9A /* NSRect+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRect+Additions.swift"; sourceTree = "<group>"; };
+		285E01CE26B95A6E00A93C9A /* InspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorView.swift; sourceTree = "<group>"; };
+		285E01D026B95BD700A93C9A /* NSView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Additions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 				285E01B926B93EB800A93C9A /* Mac Developer - challenge .pdf */,
 				285E01B826B93D4B00A93C9A /* README.md */,
 				285E01CA26B951C300A93C9A /* NSPoint+Additions.swift */,
+				285E01D026B95BD700A93C9A /* NSView+Additions.swift */,
 				285E01CB26B951C300A93C9A /* NSRect+Additions.swift */,
 				285E01B126B85F8500A93C9A /* Info.plist */,
 				285E01B226B85F8500A93C9A /* Klein.entitlements */,
@@ -102,6 +107,7 @@
 				285E01C026B9483700A93C9A /* Canvas.swift */,
 				285E01C226B9485800A93C9A /* Elipse.swift */,
 				285E01C426B9485C00A93C9A /* Rect.swift */,
+				285E01CE26B95A6E00A93C9A /* InspectorView.swift */,
 			);
 			name = Canvas;
 			sourceTree = "<group>";
@@ -177,7 +183,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285E01CF26B95A6E00A93C9A /* InspectorView.swift in Sources */,
 				285E01CD26B951C300A93C9A /* NSRect+Additions.swift in Sources */,
+				285E01D126B95BD700A93C9A /* NSView+Additions.swift in Sources */,
 				285E01C526B9485C00A93C9A /* Rect.swift in Sources */,
 				285E01A826B85F8300A93C9A /* Document.swift in Sources */,
 				285E01C726B94A9600A93C9A /* CanvasView.swift in Sources */,

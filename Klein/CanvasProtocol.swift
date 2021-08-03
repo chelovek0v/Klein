@@ -20,7 +20,7 @@ protocol CanvasProtocol
    func translate(_ translation: CGPoint)
    
    func layer() -> Any
-   
+   func insepctorView() -> Any
    
    
    func jsonString() -> String
