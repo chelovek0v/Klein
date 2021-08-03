@@ -5,7 +5,7 @@ import AppKit
 final class Elipse: FigureProtocol
 {
    // MARK: - Initialisation
-   private let rect: CGRect
+   private var rect: CGRect
    
    init(rect: CGRect)
    {
@@ -35,6 +35,16 @@ final class Elipse: FigureProtocol
    
    func deselect() {
       shapeLayer.lineWidth = 0
+   }
+   
+   
+   func translate(_ translation: CGPoint)
+   {
+      rect = rect
+         .applying(
+            .init(translationX: translation.x
+            , y: translation.y))
+      shapeLayer.frame = rect
    }
    
    func layer() -> Any {

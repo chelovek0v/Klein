@@ -28,6 +28,11 @@ final class CanvasView: NSView
       layer?.addSublayer(canvasLayer)
       canvasLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
       canvasLayer.frame = bounds
+      
+      
+      let panRecogniser =
+      NSPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+      addGestureRecognizer(panRecogniser)
    }()
    
    
@@ -38,10 +43,25 @@ final class CanvasView: NSView
       let _ = setup
    }
    
+   
+   
+   // MARK: - Drag/Pan Gesture
+   @objc func handlePanGesture(_ recogniser: NSPanGestureRecognizer)
+   {
+      let translation =
+         recogniser.translation(in: self)
+      
+      canvas.translate(translation)
+      recogniser.setTranslation(.zero, in: self)
+   }
 
 
    // MARK: - Mouse
    
+   override func mouseMoved(with event: NSEvent) {
+      print(event)
+
+   }
    // MARK: Mouse Down -> Mouse Up
    override func mouseDown(with event: NSEvent)
    {

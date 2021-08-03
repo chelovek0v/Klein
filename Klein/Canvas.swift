@@ -52,7 +52,8 @@ final class Canvas: CanvasProtocol
             CGFloat.random(in: inset.minY...inset.maxY)
             let point =
             CGPoint(x: x, y: y)
-            print(point)
+            
+//            print(point)
             
          return point
       }()
@@ -76,7 +77,7 @@ final class Canvas: CanvasProtocol
    {
       deselect()
       
-      if let selectedFigure = figures.first(where: { $0.containsPoint(point)}) {
+      if let selectedFigure = figures.last(where: { $0.containsPoint(point)}) {
          selectedFigure.select()
          self.selectedFigure = selectedFigure
       }
@@ -92,6 +93,13 @@ final class Canvas: CanvasProtocol
       
    }
    
+   func translate(_ translation: CGPoint)
+   {
+      if let selectedFigure = selectedFigure {
+         selectedFigure.translate(translation)
+      }
+   }
+   
    func select(at point: CGPoint) {
       // WIP: find the nearest figure, select it, udpate selectedFigure
    }
@@ -105,9 +113,11 @@ final class Canvas: CanvasProtocol
       // REFACTOR: selectPrecisely should return a menu(Any)
    }
    
-   func deselect() {
-      // WIP: deselect all figures and nil selectedFigure
+   
+   func deselect()
+   {
       figures.forEach({ $0.deselect() })
+      selectedFigure = nil
    }
    
    func layer() -> Any {

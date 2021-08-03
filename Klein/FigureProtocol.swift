@@ -10,6 +10,8 @@ protocol FigureProtocol
    
    func containsPoint(_ point: CGPoint) -> Bool
    
+   func translate(_ translation: CGPoint)
+   
    func jsonString() -> String
    
    //func draw(in context: Contex)

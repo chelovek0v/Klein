@@ -17,6 +17,8 @@ protocol CanvasProtocol
    func selectPrecisely(at point: CGPoint)
    func deselect()
    
+   func translate(_ translation: CGPoint)
+   
    func layer() -> Any
    
    
