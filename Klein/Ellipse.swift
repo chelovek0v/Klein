@@ -157,7 +157,14 @@ final class Elipse: FigureProtocol
    }
    
    func jsonString() -> String {
-      """
+        """
+      {
+         "width": \(rect.width),
+         "height": \(rect.height),
+         "x": \(rect.origin.x),
+         "y": \(rect.origin.y),
+         "type": "ellipse"
+      }
       """
    }
    
