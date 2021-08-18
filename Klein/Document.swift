@@ -15,13 +15,13 @@ class Document: NSDocument
    // MARK: -
    override class var autosavesInPlace: Bool { return true }
    
-   
    private lazy var windowController =
       NSWindowController(window: canvasWindow)
    
    private lazy var canvasViewController = {
       CanvasViewController(canvas:canvas)
    }()
+   
    
    private lazy var canvasWindow: NSWindow = {
       let window =
@@ -35,7 +35,9 @@ class Document: NSDocument
       return window
    }()
    
-   override func makeWindowControllers() {
+   
+   override func makeWindowControllers()
+   {
       addWindowController(windowController)
    }
    
@@ -45,7 +47,6 @@ class Document: NSDocument
       // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
       return (canvas.json as! String).data(using: .utf8)!
    }
-   
    
    
    override func read(from data: Data, ofType typeName: String) throws {
@@ -60,7 +61,5 @@ class Document: NSDocument
          }
       }
    }
-   
-   
 }
 

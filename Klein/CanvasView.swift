@@ -21,7 +21,7 @@ final class CanvasView: NSView
    
 
    
-   // MARK: - Setup
+   // MARK: -
    lazy var setup: Void = {
       guard let inspectorView = canvas.inspector as? NSView else { return }
       addSubview(inspectorView)
@@ -37,7 +37,7 @@ final class CanvasView: NSView
       canvasLayer.frame = CGRect(origin: .zero, size: .init(width: 600, height: 600))
       
       let panRecogniser =
-      NSPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+         NSPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
       addGestureRecognizer(panRecogniser)
    }()
    
@@ -51,7 +51,7 @@ final class CanvasView: NSView
    
    
    
-   // MARK: - Drag/Pan Gesture
+   // MARK: - Mouse
    @objc func handlePanGesture(_ recogniser: NSPanGestureRecognizer)
    {
       let translation =
@@ -61,56 +61,21 @@ final class CanvasView: NSView
       recogniser.setTranslation(.zero, in: self)
    }
 
-
-   // MARK: - Mouse
    
-   override func mouseMoved(with event: NSEvent) {
-      print(event)
-
-   }
-   // MARK: Mouse Down -> Mouse Up
    override func mouseDown(with event: NSEvent)
    {
-      // WIP:  check layer and view coordinates
       let point =
          convert(event.locationInWindow, from: nil)
       
-      // WIP: check for alt click
-//      canvas.select(at: point)
       canvas.click(at: point)
    }
    
-
-   
-  /*
-   override func menu(for event: NSEvent)
-   -> NSMenu?
-   {
-      let point =
-         convert(event.locationInWindow, from: nil)
-
-      if let menu = super.menu(for: event)?.copy() as? NSMenu
-      {
-         // WIP: return precise menu?
-      }
-      else {
-         return super.menu(for: event)
-      }
-   }
-   */
-   
    
    // MARK: -
-   override var acceptsFirstResponder: Bool {
-      true
-   }
+   override var acceptsFirstResponder: Bool { true }
    
-   override var wantsDefaultClipping: Bool {
-      false
-   }
+   override var wantsDefaultClipping: Bool { false }
    
-   override var isOpaque: Bool {
-      true
-   }
+   override var isOpaque: Bool { true }
 }
 
