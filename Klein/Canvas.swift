@@ -45,7 +45,7 @@ final class Canvas: CanvasProtocol
    func randomFigure() -> FigureProtocol
    {
       let randomRect =
-         randomRect(inside: masterLayer.bounds)
+         masterLayer.bounds.random()
       let bounds =
          masterLayer.bounds
          
@@ -57,7 +57,7 @@ final class Canvas: CanvasProtocol
    
    func addFigure(_ figure: FigureProtocol)
    {
-      guard let layer = figure.layer() as? CALayer else {return }
+      guard let layer = figure.layer as? CALayer else {return }
       
       figures.append(figure)
       
@@ -72,7 +72,7 @@ final class Canvas: CanvasProtocol
       deselect()
       
       if let figure = figures.last(where: { $0.containsPoint(point)})
-      , let inspector = figure.inspector() as? NSView {
+      , let inspector = figure.inspector as? NSView {
          figure.select()
          self.selectedFigure = figure
          
@@ -106,9 +106,9 @@ final class Canvas: CanvasProtocol
    {
       switch member
       {
-      case "inspectorView": return insepctorView()
+      case "inspector": return inspectorContainer
       case "layer": return masterLayer
-      case "json": return jsonString()
+      case "json": return json()
          
       default: return nil
       }
@@ -116,44 +116,20 @@ final class Canvas: CanvasProtocol
    
    
    // MARK: -
-   func layer() -> Any { masterLayer }
-   
-   func insepctorView() -> Any { inspectorContainer }
-   
    private lazy var inspectorContainer: NSView = {
       let wrapper =
          NSView()
-      wrapper.prepareForAutolayout()
       wrapper.wantsLayer = true
       wrapper.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+      
+      wrapper.prepareForAutolayout()
+      
       return wrapper
    }()
    
    
-   func jsonString() -> String
+   private func json() -> String
    {
-      "[" + figures.map({ $0.jsonString()}).joined(separator: ",") + "]"
-   }
-   
-   
-   func randomRect(inside bounds: CGRect) -> CGRect
-   {
-      // WIP: add extension to rect or size
-      let randomPoint: CGPoint = {
-         let inset =
-            masterLayer.bounds.insetBy(dx: 150, dy: 150)
-         let x =
-            CGFloat.random(in: inset.minX...inset.maxX)
-         let y =
-            CGFloat.random(in: inset.minY...inset.maxY)
-         let point =
-            CGPoint(x: x, y: y)
-         
-         print(point)
-         
-         return point
-      }()
-      
-      return CGRect(origin: randomPoint, size: .init(width: 100, height: 100))
+      "[" + figures.compactMap({ $0.json as? String}).joined(separator: ",") + "]"
    }
 }

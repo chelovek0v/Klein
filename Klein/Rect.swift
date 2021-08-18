@@ -180,4 +180,18 @@ final class Rect: FigureProtocol
       CurrentValueSubject<CGSize, Never>(rect.size)
    private lazy var originSubject =
       CurrentValueSubject<CGPoint, Never>(rect.origin)
+      
+      
+    // MARK: - Dynamic Memer Lookup
+   subscript(dynamicMember member: String) -> Any?
+   {
+      switch member
+      {
+      case "inspector": return inspector()
+      case "layer": return layer()
+      case "json": return jsonString()
+         
+      default: return nil
+      }
+   }
 }

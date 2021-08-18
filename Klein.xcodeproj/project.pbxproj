@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		280A9D2626BAF7CB00608862 /* Test.erl in Resources */ = {isa = PBXBuildFile; fileRef = 280A9D2526BAF7CB00608862 /* Test.erl */; };
+		281B182026CD4541008968CD /* CGRect+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281B181F26CD4541008968CD /* CGRect+Additions.swift */; };
 		285E01A626B85F8300A93C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01A526B85F8300A93C9A /* AppDelegate.swift */; };
 		285E01A826B85F8300A93C9A /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01A726B85F8300A93C9A /* Document.swift */; };
 		285E01AD26B85F8500A93C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 285E01AC26B85F8500A93C9A /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		280A9D2526BAF7CB00608862 /* Test.erl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.erl; sourceTree = "<group>"; };
+		281B181F26CD4541008968CD /* CGRect+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Additions.swift"; sourceTree = "<group>"; };
 		285E01A226B85F8300A93C9A /* Klein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klein.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		285E01A526B85F8300A93C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		285E01A726B85F8300A93C9A /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -61,6 +63,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		281B182126CD45E6008968CD /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				285E01BD26B946C000A93C9A /* CanvasProtocol.swift */,
+				285E01C026B9483700A93C9A /* Canvas.swift */,
+			);
+			name = Canvas;
+			sourceTree = "<group>";
+		};
+		281B182226CD4604008968CD /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				281B181F26CD4541008968CD /* CGRect+Additions.swift */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 		285E019926B85F8300A93C9A = {
 			isa = PBXGroup;
 			children = (
@@ -85,8 +104,10 @@
 				285E01C626B94A9600A93C9A /* CanvasView.swift */,
 				285E01C826B94AA100A93C9A /* CanvasViewController.swift */,
 				280A9D2526BAF7CB00608862 /* Test.erl */,
-				285E01BF26B9482900A93C9A /* Canvas */,
+				281B182126CD45E6008968CD /* Canvas */,
+				285E01BF26B9482900A93C9A /* Figure */,
 				285E01AC26B85F8500A93C9A /* Assets.xcassets */,
+				281B182226CD4604008968CD /* Library */,
 				285E01AE26B85F8500A93C9A /* MainMenu.xib */,
 				285E01B926B93EB800A93C9A /* Mac Developer - challenge .pdf */,
 				285E01B826B93D4B00A93C9A /* README.md */,
@@ -99,17 +120,15 @@
 			path = Klein;
 			sourceTree = "<group>";
 		};
-		285E01BF26B9482900A93C9A /* Canvas */ = {
+		285E01BF26B9482900A93C9A /* Figure */ = {
 			isa = PBXGroup;
 			children = (
 				285E01BB26B9463000A93C9A /* FigureProtocol.swift */,
-				285E01BD26B946C000A93C9A /* CanvasProtocol.swift */,
-				285E01C026B9483700A93C9A /* Canvas.swift */,
 				285E01C226B9485800A93C9A /* Ellipse.swift */,
 				285E01C426B9485C00A93C9A /* Rect.swift */,
 				285E01CE26B95A6E00A93C9A /* InspectorView.swift */,
 			);
-			name = Canvas;
+			name = Figure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +215,7 @@
 				285E01C126B9483700A93C9A /* Canvas.swift in Sources */,
 				285E01A626B85F8300A93C9A /* AppDelegate.swift in Sources */,
 				285E01C326B9485800A93C9A /* Ellipse.swift in Sources */,
+				281B182026CD4541008968CD /* CGRect+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

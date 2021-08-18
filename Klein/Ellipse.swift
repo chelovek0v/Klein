@@ -48,10 +48,34 @@ final class Ellipse: FigureProtocol
    }
    
    
-   func layer() -> Any { shapeLayer }
+   func changeSize(_ size: CGSize)
+   {
+      rect             = rect.withSize(size)
+      shapeLayer.frame = rect
+      shapeLayer.path  = CGPath(ellipseIn: rect.withOrigin(.zero), transform: nil)
+      
+      sizeSubject.send(size)
+   }
    
    
-   func inspector() -> Any {
+   func changeOrigin(_ point: CGPoint)
+   {
+      rect             = rect.withOrigin(point)
+      shapeLayer.frame = rect
+         
+      originSubject.send(point)
+   }
+   
+   
+   func containsPoint(_ point: CGPoint) -> Bool
+   {
+      rect.contains(point)
+   }
+
+
+
+   // MARK: -
+   private func inspector() -> Any {
       let view =
       InspectorView(figure: self)
       
@@ -125,33 +149,15 @@ final class Ellipse: FigureProtocol
    }
    
    
-   func changeSize(_ size: CGSize)
+   @objc private func handleChangeColour(_ colorWell: NSColorWell)
    {
-      rect             = rect.withSize(size)
-      shapeLayer.frame = rect
-      shapeLayer.path  = CGPath(ellipseIn: rect.withOrigin(.zero), transform: nil)
-      
-      sizeSubject.send(size)
+      shapeLayer.fillColor = colorWell.color.cgColor
    }
    
    
-   func changeOrigin(_ point: CGPoint)
+   private func json() -> String
    {
-      rect             = rect.withOrigin(point)
-      shapeLayer.frame = rect
-         
-      originSubject.send(point)
-   }
-   
-   
-   func containsPoint(_ point: CGPoint) -> Bool
-   {
-      rect.contains(point)
-   }
-   
-   
-   func jsonString() -> String {
-        """
+      """
       {
          "width": \(rect.width),
          "height": \(rect.height),
@@ -161,14 +167,24 @@ final class Ellipse: FigureProtocol
       }
       """
    }
-   
-   
-   @objc private func handleChangeColour(_ colorWell: NSColorWell)
+
+
+      
+    // MARK: - Dynamic Memer Lookup
+   subscript(dynamicMember member: String) -> Any?
    {
-      shapeLayer.fillColor = colorWell.color.cgColor
+      switch member
+      {
+      case "inspector": return inspector()
+      case "layer": return shapeLayer
+      case "json": return json()
+         
+      default: return nil
+      }
    }
    
-
+   
+   
    // MARK: - Combine
    lazy var subscribers: [AnyCancellable] = []
    private lazy var numberFormatter =

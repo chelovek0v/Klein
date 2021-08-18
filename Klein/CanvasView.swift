@@ -23,7 +23,7 @@ final class CanvasView: NSView
    
    // MARK: - Setup
    lazy var setup: Void = {
-      guard let inspectorView = canvas.inspectorView as? NSView else { return }
+      guard let inspectorView = canvas.inspector as? NSView else { return }
       addSubview(inspectorView)
       inspectorView.pinTopToTop(self)
       inspectorView.pinTrailing(self)
