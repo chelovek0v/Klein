@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		280A9D2626BAF7CB00608862 /* Test.erl in Resources */ = {isa = PBXBuildFile; fileRef = 280A9D2526BAF7CB00608862 /* Test.erl */; };
 		281B182026CD4541008968CD /* CGRect+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281B181F26CD4541008968CD /* CGRect+Additions.swift */; };
 		285E01A626B85F8300A93C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01A526B85F8300A93C9A /* AppDelegate.swift */; };
 		285E01A826B85F8300A93C9A /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E01A726B85F8300A93C9A /* Document.swift */; };
@@ -28,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		280A9D2526BAF7CB00608862 /* Test.erl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.erl; sourceTree = "<group>"; };
 		281B181F26CD4541008968CD /* CGRect+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Additions.swift"; sourceTree = "<group>"; };
 		285E01A226B85F8300A93C9A /* Klein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klein.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		285E01A526B85F8300A93C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 				285E01A726B85F8300A93C9A /* Document.swift */,
 				285E01C626B94A9600A93C9A /* CanvasView.swift */,
 				285E01C826B94AA100A93C9A /* CanvasViewController.swift */,
-				280A9D2526BAF7CB00608862 /* Test.erl */,
 				281B182126CD45E6008968CD /* Canvas */,
 				285E01BF26B9482900A93C9A /* Figure */,
 				285E01AC26B85F8500A93C9A /* Assets.xcassets */,
@@ -189,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				285E01AD26B85F8500A93C9A /* Assets.xcassets in Resources */,
-				280A9D2626BAF7CB00608862 /* Test.erl in Resources */,
 				285E01BA26B93EB800A93C9A /* Mac Developer - challenge .pdf in Resources */,
 				285E01B026B85F8500A93C9A /* MainMenu.xib in Resources */,
 			);
