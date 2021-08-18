@@ -43,7 +43,7 @@ class Document: NSDocument
    override func data(ofType typeName: String) throws -> Data {
       // Insert code here to write your document to data of the specified type, throwing an error in case of failure.
       // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
-      return canvas.jsonString().data(using: .utf8)!
+      return (canvas.json as! String).data(using: .utf8)!
    }
    
    

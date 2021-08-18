@@ -13,6 +13,7 @@ final class Canvas: CanvasProtocol
       return layer
    }()
    
+   
    private lazy var figures: [FigureProtocol] = []
    
    private var selectedFigure: FigureProtocol?
@@ -39,39 +40,30 @@ final class Canvas: CanvasProtocol
                           , height: json["height"] as! CGFloat))
       }
    }
-   
-   
-   func ellipse(in rect: CGRect) -> FigureProtocol
-   {
-      Ellipse(bounds: masterLayer.bounds, rect: rect)
-   }
-   
-   
-   func rect(_ rect: CGRect) -> FigureProtocol
-   {
-      Rect(bounds: masterLayer.bounds, rect: rect)
-   }
-   
+
    
    func randomFigure() -> FigureProtocol
    {
       let randomRect =
          randomRect(inside: masterLayer.bounds)
+      let bounds =
+         masterLayer.bounds
+         
       return Bool.random() ?
-         ellipse(in: randomRect) :
-         rect(randomRect)
+         Ellipse(bounds: bounds, rect: randomRect) :
+         Rect(bounds: bounds, rect: randomRect)
    }
    
    
    func addFigure(_ figure: FigureProtocol)
    {
-      guard let figureLayer = figure.layer() as? CALayer else {return }
+      guard let layer = figure.layer() as? CALayer else {return }
       
       figures.append(figure)
       
-      figureLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
-      figureLayer.frame = masterLayer.bounds
-      masterLayer.addSublayer(figureLayer)
+      layer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
+      layer.frame = masterLayer.bounds
+      masterLayer.addSublayer(layer)
    }
    
    
@@ -79,43 +71,56 @@ final class Canvas: CanvasProtocol
    {
       deselect()
       
-      if let selectedFigure = figures.last(where: { $0.containsPoint(point)})
-      , let inspector = selectedFigure.inspector() as? NSView {
-         selectedFigure.select()
-         self.selectedFigure = selectedFigure
+      if let figure = figures.last(where: { $0.containsPoint(point)})
+      , let inspector = figure.inspector() as? NSView {
+         figure.select()
+         self.selectedFigure = figure
          
-         inspectorWrapperView.subviews.forEach({ $0.removeFromSuperview() })
-         inspectorWrapperView.addSubview(inspector)
-         inspector.pin(inspectorWrapperView)
+         inspectorContainer.subviews.forEach({ $0.removeFromSuperview() })
+         inspectorContainer.addSubview(inspector)
+         inspector.pin(inspectorContainer)
       }
       else {
          addFigure(randomFigure())
       }
    }
    
-   func translate(_ translation: CGPoint)
+   func moveSelected(_ translation: CGPoint)
    {
       if let selectedFigure = selectedFigure {
-         selectedFigure.translate(translation)
+         selectedFigure.move(translation)
       }
    }
    
 
    func deselect()
    {
-      inspectorWrapperView.subviews.forEach({ $0.removeFromSuperview() })
+      inspectorContainer.subviews.forEach({ $0.removeFromSuperview() })
       figures.forEach({ $0.deselect() })
       selectedFigure = nil
    }
    
    
+   // MARK: - Dynamic Memer Lookup
+   subscript(dynamicMember member: String) -> Any?
+   {
+      switch member
+      {
+      case "inspectorView": return insepctorView()
+      case "layer": return masterLayer
+      case "json": return jsonString()
+         
+      default: return nil
+      }
+   }
+   
    
    // MARK: -
    func layer() -> Any { masterLayer }
    
-   func insepctorView() -> Any { inspectorWrapperView }
+   func insepctorView() -> Any { inspectorContainer }
    
-   private lazy var inspectorWrapperView: NSView = {
+   private lazy var inspectorContainer: NSView = {
       let wrapper =
          NSView()
       wrapper.prepareForAutolayout()

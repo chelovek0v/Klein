@@ -11,7 +11,7 @@ protocol FigureProtocol
    func inspector() -> Any
    
    func containsPoint(_ point: CGPoint) -> Bool
-   func translate(_ translation: CGPoint)
+   func move(_ translation: CGPoint)
    func changeOrigin(_ point: CGPoint)
    func changeSize(_ size: CGSize)
    

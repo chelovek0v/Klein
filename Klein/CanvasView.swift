@@ -23,14 +23,14 @@ final class CanvasView: NSView
    
    // MARK: - Setup
    lazy var setup: Void = {
-      guard let inspectorView = canvas.insepctorView() as? NSView else { return }
+      guard let inspectorView = canvas.inspectorView as? NSView else { return }
       addSubview(inspectorView)
       inspectorView.pinTopToTop(self)
       inspectorView.pinTrailing(self)
       inspectorView.sizeWidth(with: 200)
       inspectorView.pinBottomToBottom(self)
       
-      guard let canvasLayer = canvas.layer() as? CALayer else { return }
+      guard let canvasLayer = canvas.layer as? CALayer else { return }
       
       layer?.addSublayer(canvasLayer)
       canvasLayer.autoresizingMask = []
@@ -57,7 +57,7 @@ final class CanvasView: NSView
       let translation =
          recogniser.translation(in: self)
       
-      canvas.translate(translation)
+      canvas.moveSelected(translation)
       recogniser.setTranslation(.zero, in: self)
    }
 

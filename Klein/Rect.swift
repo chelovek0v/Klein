@@ -36,7 +36,7 @@ final class Rect: FigureProtocol
    func deselect() { shapeLayer.lineWidth = 0 }
    
    
-   func translate(_ translation: CGPoint)
+   func move(_ translation: CGPoint)
    {
       rect = rect
          .applying(
