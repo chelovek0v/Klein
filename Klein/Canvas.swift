@@ -85,6 +85,7 @@ final class Canvas: CanvasProtocol
       }
    }
    
+   
    func moveSelected(_ translation: CGPoint)
    {
       if let selectedFigure = selectedFigure {
@@ -115,7 +116,6 @@ final class Canvas: CanvasProtocol
    }
    
    
-   // MARK: -
    private lazy var inspectorContainer: NSView = {
       let wrapper =
          NSView()

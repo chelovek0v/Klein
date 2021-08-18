@@ -8,6 +8,7 @@ protocol FigureProtocol
    func deselect()
    
    func containsPoint(_ point: CGPoint) -> Bool
+   
    func move(_ translation: CGPoint)
    func changeOrigin(_ point: CGPoint)
    func changeSize(_ size: CGSize)
