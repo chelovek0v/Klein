@@ -73,6 +73,9 @@
 		281B182226CD4604008968CD /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				285E01CA26B951C300A93C9A /* NSPoint+Additions.swift */,
+				285E01D026B95BD700A93C9A /* NSView+Additions.swift */,
+				285E01CB26B951C300A93C9A /* NSRect+Additions.swift */,
 				281B181F26CD4541008968CD /* CGRect+Additions.swift */,
 			);
 			name = Library;
@@ -108,9 +111,6 @@
 				285E01AE26B85F8500A93C9A /* MainMenu.xib */,
 				285E01B926B93EB800A93C9A /* Mac Developer - challenge .pdf */,
 				285E01B826B93D4B00A93C9A /* README.md */,
-				285E01CA26B951C300A93C9A /* NSPoint+Additions.swift */,
-				285E01D026B95BD700A93C9A /* NSView+Additions.swift */,
-				285E01CB26B951C300A93C9A /* NSRect+Additions.swift */,
 				285E01B126B85F8500A93C9A /* Info.plist */,
 				285E01B226B85F8500A93C9A /* Klein.entitlements */,
 			);
